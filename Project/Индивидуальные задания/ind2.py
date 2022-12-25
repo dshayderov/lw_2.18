@@ -4,6 +4,7 @@
 import argparse
 import json
 import os
+from dotenv import load_dotenv
 import sys
 
 
@@ -169,6 +170,9 @@ def main(command_line=None):
 
     # Получить имя файла.
     data_file = args.data
+    dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.exists(dotenv_path):
+        load_dotenv(dotenv_path)
     if not data_file:
         data_file = os.environ.get("PLANES_DATA")
     if not data_file:
